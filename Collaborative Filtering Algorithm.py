@@ -53,7 +53,7 @@ avg_corate=corate_p.reduceByKey(lambda x,y: (x[0]+y[0],x[1]+y[1]))\
 # (user1,useri),(rating1,ratingi)
 corate_rating=corate_pair.map(lambda x:((x[1][0][0],x[1][1][0]),(float(x[1][0][1]),float(x[1][1][1]))))
 
-# pearson similarity
+# Pearson Similarity
 # (user1,useri),similarity
 similarity=corate_rating.join(avg_corate).map(lambda x: (x[0], ((x[1][0][0]-x[1][1]),(x[1][0][1]-x[1][1]))))\
                         .map(lambda x: (x[0],(x[1][0]*x[1][1], math.pow(x[1][0],2),math.pow(x[1][1],2))))\
